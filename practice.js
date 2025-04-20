@@ -1,3 +1,4 @@
+
 class Node {
   constructor(value) {
     this.value = value;
@@ -9,7 +10,7 @@ class LinkedList {
   constructor(value) {
     const newNode = new Node(value);
     this.head = newNode;
-    this.tail = newNode;
+    this.tail = this.head;
     this.length = 1;
   }
 
@@ -22,16 +23,18 @@ class LinkedList {
       this.tail.next = newNode;
       this.tail = newNode;
     }
+
     this.length++;
     return this;
   }
 
   pop() {
     if (!this.head) return undefined;
+
     let temp = this.head;
     let pre = this.head;
 
-    if (temp.next) {
+    while (temp.next) {
       pre = temp;
       temp = temp.next;
     }
@@ -49,10 +52,13 @@ class LinkedList {
   }
 }
 
-const myLinkedList = new LinkedList(1); // List: 1
-console.log(myLinkedList.push(2)); // List: 1 -> 2
-console.log(myLinkedList.pop()); // Returns Node { value: 2, next: null }
-console.log(myLinkedList); // List: 1, length: 1
-console.log(myLinkedList.pop()); // Returns Node { value: 1, next: null }
-console.log(myLinkedList); // List: empty, length: 0
-console.log(myLinkedList.pop()); // Returns undefined
+const myLinkedList = new LinkedList(7);
+
+myLinkedList.push(4);
+console.log(myLinkedList);
+
+console.log(myLinkedList.pop()); // Node {value:4, next:null}
+console.log(myLinkedList);
+console.log(myLinkedList.pop()); // return Node{ value:7, next:null}
+console.log(myLinkedList); //  // return Node{ value:7, next:null}
+console.log(myLinkedList.pop()); // return undefined
